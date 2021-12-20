@@ -1,0 +1,23 @@
+/* Core variables */
+@import 'base/vars';
+
+/* CSS Reset */
+@import 'base/reset';
+
+/* Mixins, helpers and functions */
+@import 'base/mixins';
+
+/* Vendor */
+
+/* Components */
+
+/* Use the variables */
+body {
+  background-color: $body-background-color;
+  color: $text-color;
+  font-size: $h1-font-size;
+}
+
+p {
+  font-size: $p-font-size;
+}
