@@ -1,23 +1,56 @@
-/* Core variables */
-@import 'base/vars';
-
 /* CSS Reset */
-@import 'base/reset';
+@import "base/reset";
+
+/* Core variables */
+@import "base/vars";
 
 /* Mixins, helpers and functions */
-@import 'base/mixins';
+@import "base/mixins";
 
-/* Vendor */
+/* Fonts */
+@import "base/fonts";
 
-/* Components */
-
-/* Use the variables */
+/* General */
 body {
-  background-color: $body-background-color;
+
   color: $text-color;
-  font-size: $h1-font-size;
+  font-family: "Nanum Gothic", sans-serif;
+  height: 100%;
 }
 
-p {
-  font-size: $p-font-size;
+li {
+  list-style: none;
+  padding: 5px;
+}
+
+/* Containers */
+.outer-container {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.inner-container {
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+
+  background-repeat: no-repeat;
+  background-color: $white;
+  margin: 25px auto;
+  padding: 15px;
+  width: 768px;
+  box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 55px;
+  margin-bottom: 50px;
 }
