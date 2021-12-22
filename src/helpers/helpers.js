@@ -1,6 +1,48 @@
-import getItemsData from '../api/api';
+import { getItemsData, getComments } from '../api/api';
 
 const displaySection = document.getElementById('main-section__display-data');
+
+function renderItem(itemId, itemName) {
+  const itemView = document.getElementById('individual-item');
+  itemView.innerHTML = `
+  <button class="close-item">X</button>
+  <div>
+    <img src="https://robohash.org/${itemId}?set=set2&size=180x180">
+  </div>
+  <h2 class="robot-name">${itemName}</h2>
+  <ul id="comment-list">
+
+  </ul>
+  <input type="text" placeholder="Your name"></input>
+  <textarea placeholder="Your insights"></textarea>
+  <button class="add-comment">Comment</button>
+  `;
+  itemView.classList.remove("none");
+  itemView.classList.add("absolute");
+  const closeBtn = document.getElementsByClassName("close-item");
+  closeBtn[0].addEventListener('click', () => {
+    itemView.classList.remove("absolute");
+    itemView.classList.add("none");
+  })
+}
+
+function displayComments (itemId) {
+  getComments(`item${itemId}`).then((response) => {
+    const commentList = document.getElementById("comment-list")
+    response.forEach((comment) => {
+      console.log(comment);
+      const commentItem = document.createElement('LI');
+      commentItem.innerHTML = `
+        <div>
+        ${comment.creation_date} : 
+        ${comment.username} <br>
+        ${comment.comment}
+        </div>
+      `;
+      commentList.appendChild(commentItem);
+    });
+  });
+}
 
 function createRobots(data) {
   data.forEach((item) => {
@@ -18,9 +60,15 @@ function createRobots(data) {
         <div className="main-section__item-likes">
           <p class="main-section__item-likes-count">sssss</p>
         </div>
+        <button id='bt${item.id}' class='commentBtn'>Comment</button>
       </div>
     `;
     displaySection.appendChild(robotDiv);
+    const commentBtn = document.getElementById(`bt${item.id}`);
+    commentBtn.addEventListener('click', () => {
+      renderItem(item.id, item.name);
+      displayComments(item.id);
+    })
   });
 }
 
