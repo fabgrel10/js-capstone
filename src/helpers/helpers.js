@@ -3,7 +3,6 @@ import { getItemsData, getLikes, likeRobot } from '../api/api';
 const displaySection = document.getElementById('main-section__display-data');
 
 function createRobots(data) {
-  console.log(getLikes());
   data.forEach((item) => {
     const robotDiv = document.createElement('div');
     robotDiv.classList.add('main-section__item');
@@ -33,15 +32,16 @@ function createRobots(data) {
     button.addEventListener('click', (e) => {
       likeRobot(e.target.parentElement.id);
     });
-    getLikes();
   });
 }
 
 function renderRobots() {
+  displaySection.innerHTML = '';
   const robots = getItemsData();
   robots.then((data) => {
     createRobots(data);
   });
+  getLikes();
 }
 
 export default renderRobots;

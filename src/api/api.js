@@ -1,7 +1,6 @@
 const customAPIUrl = 'https://jsonplaceholder.typicode.com/users/';
-const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+const involvementAPIUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps';
 const appId = 'y4TwwmDxqwj3mg9nZSqM';
-const retrieveLikes = `${involvementUrl}/${appId}/likes/`;
 
 async function getItemsData() {
   const response = await fetch(customAPIUrl);
@@ -10,7 +9,7 @@ async function getItemsData() {
 }
 
 async function likeRobot(robotId) {
-  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y4TwwmDxqwj3mg9nZSqM/likes/', {
+  const response = await fetch(`${involvementAPIUrl}/${appId}/likes/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,12 +19,11 @@ async function likeRobot(robotId) {
     }),
   });
   const status = await response.status;
-  console.log(status);
   return status;
 }
 
 async function getLikes() {
-  const likedItems = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y4TwwmDxqwj3mg9nZSqM/likes/')
+  const likedItems = await fetch(`${involvementAPIUrl}/${appId}/likes/`)
     .then((response) => response.json())
     .then((data) => data);
 
