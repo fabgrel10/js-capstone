@@ -1,4 +1,4 @@
-import { getItemsData, getComments } from '../api/api';
+import { getItemsData, getComments, postComments } from '../api/api';
 
 const displaySection = document.getElementById('main-section__display-data');
 
@@ -13,9 +13,9 @@ function renderItem(itemId, itemName) {
   <ul id="comment-list">
 
   </ul>
-  <input type="text" placeholder="Your name"></input>
-  <textarea placeholder="Your insights"></textarea>
-  <button class="add-comment">Comment</button>
+  <input class="inputName" type="text" placeholder="Your name"></input>
+  <textarea class="inputComment" placeholder="Your insights"></textarea>
+  <button class="add-comment-btn">Comment</button>
   `;
   itemView.classList.remove("none");
   itemView.classList.add("absolute");
@@ -24,13 +24,23 @@ function renderItem(itemId, itemName) {
     itemView.classList.remove("absolute");
     itemView.classList.add("none");
   })
+  const addCommentBtn = document.getElementsByClassName("add-comment-btn");
+  addCommentBtn[0].addEventListener('click', () => {
+    const inputName = document.getElementsByClassName("inputName");
+    const inputComment = document.getElementsByClassName("inputComment");
+    postComments(itemId, inputName[0], inputComment[0]).then(() => {
+      const commentList = document.getElementById("comment-list");
+      commentList.innerHTML = "";
+      displayComments (itemId);
+    })
+  })
 }
 
 function displayComments (itemId) {
   getComments(`item${itemId}`).then((response) => {
-    const commentList = document.getElementById("comment-list")
+    const commentList = document.getElementById("comment-list");
     response.forEach((comment) => {
-      console.log(comment);
+      // console.log(comment);
       const commentItem = document.createElement('LI');
       commentItem.innerHTML = `
         <div>

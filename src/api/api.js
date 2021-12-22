@@ -7,9 +7,25 @@ async function getItemsData() {
   return data;
 }
 
+const postComments = async (itemId, username, comment) => {
+  const postResult = await fetch(`${appUrl}comments`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      item_id: `item${itemId}`,
+      username: username.value,
+      comment: comment.value
+    }),
+  });
+  username.value = '';
+  comment.value = '';
+};
+
 const getComments = async (param) => {
   const commentsList = await fetch(`${appUrl}comments?item_id=${param}`);
   return commentsList.json();
 };
 
-export { getItemsData, getComments };
+export { getItemsData, getComments, postComments };
