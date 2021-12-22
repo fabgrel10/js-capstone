@@ -47,25 +47,59 @@ li {
   box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
 }
 
-// #main {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-//   grid-gap: 55px;
-//   margin-bottom: 50px;
-// }
-
-.popup {
+/* Header */
+nav {
   display: flex;
-  flex-direction: column;
-  padding: 20px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-input,
-textarea {
-  width: 300px;
-  margin: 10px;
+#nav-logo {
+  clip-path: circle();
+  background-color: #000;
+  width: 80px;
 }
 
-.button {
-  width: 100px
+#nav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* Homepage */
+#main-section {
+  margin-top: 50px;
+}
+
+#main-section__display-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 55px;
+  margin-bottom: 50px;
+}
+
+
+.main-section__item-img {
+  display: flex;
+  justify-content: center;
+}
+
+.main-section__item-name {
+  display: flex;
+  font-size: 1rem;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+.main-section__item-name button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.main-section__item-likes-count {
+  text-align: right;
+
+  font-weight: bold;
 }
