@@ -19,6 +19,9 @@ function createRobots(data) {
         <div className="main-section__item-likes">
           <p class="main-section__item-likes-count" id=${item.id}>0</p>
         </div>
+        <div class="main-section__item-comment-container">
+          <button class="main-section__item-comment-button">Comments</button>
+        </div>
       </div>
     `;
     displaySection.appendChild(robotDiv);

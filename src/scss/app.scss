@@ -101,6 +101,26 @@ nav {
 
 .main-section__item-likes-count {
   text-align: right;
-
   font-weight: bold;
+  padding-right: 10px;
+}
+
+.main-section__item-comment-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-section__item-comment-button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.2em 0.5em;
+  box-shadow: 1px 1px 0 0, 2px 2px 0 0, 3px 3px 0 0, 4px 4px 0 0, 5px 5px 0 0;
+  user-select: none;
+  touch-action: manipulation;
 }
