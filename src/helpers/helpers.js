@@ -1,6 +1,7 @@
 import { getItemsData, getLikes, likeRobot } from '../api/api';
 
 const displaySection = document.getElementById('main-section__display-data');
+const robotsTotal = document.querySelector('#nav-title span');
 
 function createRobots(data) {
   data.forEach((item) => {
@@ -39,6 +40,7 @@ function renderRobots() {
   displaySection.innerHTML = '';
   const robots = getItemsData();
   robots.then((data) => {
+    robotsTotal.innerHTML = data.length;
     createRobots(data);
   });
   getLikes();
