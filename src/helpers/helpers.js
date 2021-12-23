@@ -10,6 +10,10 @@ function renderItem(itemId, itemName) {
     <img src="https://robohash.org/${itemId}?set=set2&size=180x180">
   </div>
   <h2 class="robot-name">${itemName}</h2>
+  <div id="details">
+
+  </div>
+  <div id="comment-counter"> </div>
   <ul id="comment-list">
 
   </ul>
@@ -36,22 +40,37 @@ function renderItem(itemId, itemName) {
   })
 }
 
+function displayDetails (item) {
+  const detailContainer = document.getElementById("details");
+  detailContainer.innerHTML = `
+  <p>City: ${item.address.city}</p>
+  <p>Brand: ${item.company.name}</p>
+  <p>Specialty 1: ${item.company.catchPhrase}</p>
+  <p>Specialty 2: ${item.company.bs}</p>
+  `;
+}
+
 function displayComments (itemId) {
-  getComments(`item${itemId}`).then((response) => {
-    const commentList = document.getElementById("comment-list");
-    response.forEach((comment) => {
-      // console.log(comment);
-      const commentItem = document.createElement('LI');
-      commentItem.innerHTML = `
-        <div>
-        ${comment.creation_date} : 
-        ${comment.username} <br>
-        ${comment.comment}
-        </div>
-      `;
-      commentList.appendChild(commentItem);
+  const commentCount = document.getElementById("comment-counter");
+  const commentList = document.getElementById("comment-list");
+  getComments(`item${itemId}`)
+    .then((response) => {
+      commentCount.innerHTML = `Comments(${response.length})`;
+      response.forEach((comment) => {
+        const commentItem = document.createElement('LI');
+        commentItem.innerHTML = `
+          <div>
+          ${comment.creation_date} : 
+          ${comment.username} - 
+          ${comment.comment}
+          </div>
+        `;
+        commentList.appendChild(commentItem);
+      });
+    })
+    .catch(() => {
+      commentCount.innerHTML = `Comments(0)`;
     });
-  });
 }
 
 function createRobots(data) {
@@ -78,6 +97,7 @@ function createRobots(data) {
     commentBtn.addEventListener('click', () => {
       renderItem(item.id, item.name);
       displayComments(item.id);
+      displayDetails(item);
     })
   });
 }
