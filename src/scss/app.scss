@@ -64,7 +64,7 @@ nav {
   background-color: #fff;
   border-width: 0;
   box-sizing: border-box;
-  color: #000000;
+  color: #000;
   cursor: pointer;
   display: inline-block;
   font-family: Clarkson, Helvetica, sans-serif;
@@ -81,7 +81,7 @@ nav {
   text-decoration: none;
   text-rendering: geometricPrecision;
   text-transform: uppercase;
-  transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+  transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1), background-color 100ms cubic-bezier(0.694, 0, 0.335, 1), color 100ms cubic-bezier(0.694, 0, 0.335, 1);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -89,8 +89,8 @@ nav {
   white-space: nowrap;
 }
 
-.nav-item:before {
-  animation: opacityFallbackOut .5s step-end forwards;
+.nav-item::before {
+  animation: opacityFallbackOut 0.5s step-end forwards;
   backface-visibility: hidden;
   background-color: #ebebeb;
   clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
@@ -100,12 +100,11 @@ nav {
   position: absolute;
   top: 0;
   transform: translateZ(0);
-  transition: clip-path .5s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   width: 100%;
 }
 
-
-.nav-item:after {
+.nav-item::after {
   background-color: #fff;
 }
 
