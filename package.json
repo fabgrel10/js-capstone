@@ -13,7 +13,8 @@
     "webhint": "npx hint .",
     "stylelint": "npx stylelint \"**/*.{css,scss}\" --fix",
     "eslint": "npx eslint . --fix",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "jest --coverage"
   },
   "keywords": [
     "webpack",
@@ -38,6 +39,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.4.3",
     "image-minimizer-webpack-plugin": "^2.2.0",
     "mini-css-extract-plugin": "^2.4.5",
     "prettier": "^2.5.0",
