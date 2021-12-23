@@ -1,5 +1,5 @@
-const customAPIUrl = 'https://jsonplaceholder.typicode.com/users/'; // robotUrl
-const involvementAPIUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps'; //appUrl
+const customAPIUrl = 'https://jsonplaceholder.typicode.com/users/';
+const involvementAPIUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps';
 const appId = 'y4TwwmDxqwj3mg9nZSqM';
 
 async function getItemsData() {
@@ -9,6 +9,7 @@ async function getItemsData() {
 }
 
 const postComments = async (itemId, username, comment) => {
+  /* eslint-disable-next-line no-unused-vars */
   const postResult = await fetch(`${involvementAPIUrl}/${appId}/comments`, {
     method: 'POST',
     headers: {
@@ -17,7 +18,7 @@ const postComments = async (itemId, username, comment) => {
     body: JSON.stringify({
       item_id: `item${itemId}`,
       username: username.value,
-      comment: comment.value
+      comment: comment.value,
     }),
   });
   username.value = '';
@@ -62,4 +63,6 @@ async function getLikes() {
   });
 }
 
-export { getItemsData, getLikes, likeRobot, getComments, postComments };
+export {
+  getItemsData, getLikes, likeRobot, getComments, postComments,
+};

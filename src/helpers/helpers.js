@@ -1,4 +1,6 @@
-import { getItemsData, getComments, postComments, getLikes, likeRobot } from '../api/api';
+import {
+  getItemsData, getComments, postComments, getLikes, likeRobot,
+} from '../api/api.js';
 
 const displaySection = document.getElementById('main-section__display-data');
 const robotsTotal = document.querySelector('#nav-title span');
@@ -20,6 +22,29 @@ function refreshLikes() {
   });
 }
 
+function displayComments(itemId) {
+  const commentCount = document.getElementById('comment-counter');
+  const commentList = document.getElementById('comment-list');
+  getComments(`item${itemId}`)
+    .then((response) => {
+      commentCount.innerHTML = `Comments(${response.length})`;
+      response.forEach((comment) => {
+        const commentItem = document.createElement('LI');
+        commentItem.innerHTML = `
+          <div>
+          ${comment.creation_date} : 
+          ${comment.username} - 
+          ${comment.comment}
+          </div>
+        `;
+        commentList.appendChild(commentItem);
+      });
+    })
+    .catch(() => {
+      commentCount.innerHTML = 'Comments(0)';
+    });
+}
+
 function renderItem(itemId, itemName) {
   const itemView = document.getElementById('individual-item');
   itemView.innerHTML = `
@@ -39,56 +64,33 @@ function renderItem(itemId, itemName) {
   <textarea class="inputComment" placeholder="Your insights"></textarea>
   <button class="add-comment-btn">Comment</button>
   `;
-  itemView.classList.remove("none");
-  itemView.classList.add("absolute");
-  const closeBtn = document.getElementsByClassName("close-item");
+  itemView.classList.remove('none');
+  itemView.classList.add('absolute');
+  const closeBtn = document.getElementsByClassName('close-item');
   closeBtn[0].addEventListener('click', () => {
-    itemView.classList.remove("absolute");
-    itemView.classList.add("none");
-  })
-  const addCommentBtn = document.getElementsByClassName("add-comment-btn");
+    itemView.classList.remove('absolute');
+    itemView.classList.add('none');
+  });
+  const addCommentBtn = document.getElementsByClassName('add-comment-btn');
   addCommentBtn[0].addEventListener('click', () => {
-    const inputName = document.getElementsByClassName("inputName");
-    const inputComment = document.getElementsByClassName("inputComment");
+    const inputName = document.getElementsByClassName('inputName');
+    const inputComment = document.getElementsByClassName('inputComment');
     postComments(itemId, inputName[0], inputComment[0]).then(() => {
-      const commentList = document.getElementById("comment-list");
-      commentList.innerHTML = "";
-      displayComments (itemId);
-    })
-  })
+      const commentList = document.getElementById('comment-list');
+      commentList.innerHTML = '';
+      displayComments(itemId);
+    });
+  });
 }
 
-function displayDetails (item) {
-  const detailContainer = document.getElementById("details");
+function displayDetails(item) {
+  const detailContainer = document.getElementById('details');
   detailContainer.innerHTML = `
   <p>City: ${item.address.city}</p>
   <p>Brand: ${item.company.name}</p>
   <p>Specialty 1: ${item.company.catchPhrase}</p>
   <p>Specialty 2: ${item.company.bs}</p>
   `;
-}
-
-function displayComments (itemId) {
-  const commentCount = document.getElementById("comment-counter");
-  const commentList = document.getElementById("comment-list");
-  getComments(`item${itemId}`)
-    .then((response) => {
-      commentCount.innerHTML = `Comments(${response.length})`;
-      response.forEach((comment) => {
-        const commentItem = document.createElement('LI');
-        commentItem.innerHTML = `
-          <div>
-          ${comment.creation_date} : 
-          ${comment.username} - 
-          ${comment.comment}
-          </div>
-        `;
-        commentList.appendChild(commentItem);
-      });
-    })
-    .catch(() => {
-      commentCount.innerHTML = `Comments(0)`;
-    });
 }
 
 function createRobots(data) {
@@ -118,7 +120,7 @@ function createRobots(data) {
       renderItem(item.id, item.name);
       displayComments(item.id);
       displayDetails(item);
-    })
+    });
   });
 
   const likeButton = document.querySelectorAll('.main-section__item-name button');
