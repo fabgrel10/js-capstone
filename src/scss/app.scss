@@ -12,7 +12,6 @@
 
 /* General */
 body {
-
   color: $text-color;
   font-family: "Nanum Gothic", sans-serif;
   height: 100%;
@@ -78,7 +77,6 @@ nav {
   margin-bottom: 50px;
 }
 
-
 .main-section__item-img {
   display: flex;
   justify-content: center;
@@ -91,6 +89,10 @@ nav {
   justify-content: space-between;
 }
 
+.main-section__item-name h2 {
+  padding-left: 12px;
+}
+
 .main-section__item-name button {
   background-color: transparent;
   border: none;
@@ -100,10 +102,30 @@ nav {
 
 .main-section__item-likes-count {
   text-align: right;
-
   font-weight: bold;
 }
 
+.main-section__item-comment-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-section__item-comment-button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.2em 0.5em;
+  box-shadow: 1px 1px 0 0, 2px 2px 0 0, 3px 3px 0 0, 4px 4px 0 0, 5px 5px 0 0;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Comments */
 .absolute {
   position: absolute;
   top: 150px;
@@ -132,4 +154,5 @@ nav {
 .close-item {
   align-self: flex-end;
   margin: 0 20px;
+  padding-right: 10px;
 }

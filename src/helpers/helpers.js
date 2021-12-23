@@ -1,6 +1,24 @@
-import { getItemsData, getComments, postComments } from '../api/api';
+import { getItemsData, getComments, postComments, getLikes, likeRobot } from '../api/api';
 
 const displaySection = document.getElementById('main-section__display-data');
+const robotsTotal = document.querySelector('#nav-title span');
+
+function refreshLikes() {
+  const totalLikes = document.getElementsByClassName('main-section__item-likes-count');
+  const totalLikesArray = Array.from(totalLikes);
+
+  totalLikesArray.forEach((element) => {
+    const likeId = element.getAttribute('id');
+    const currentSpan = element;
+    getLikes().then((data) => {
+      data.forEach((e) => {
+        if (likeId === e.id) {
+          currentSpan.innerHTML = e.likes;
+        }
+      });
+    });
+  });
+}
 
 function renderItem(itemId, itemName) {
   const itemView = document.getElementById('individual-item');
@@ -84,12 +102,14 @@ function createRobots(data) {
         </div>
         <div class="main-section__item-name">
           <h2>${item.name}</h2>
-          <button><i class="fas fa-heart"></i></button>
+          <button id=${item.id}><i class="fas fa-heart"></i></button>
         </div>
         <div className="main-section__item-likes">
-          <p class="main-section__item-likes-count">sssss</p>
+          <p class="main-section__item-likes-count" id=${item.id}>0</p>
         </div>
-        <button id='bt${item.id}' class='commentBtn'>Comment</button>
+        <div class="main-section__item-comment-container">
+          <button id='bt${item.id}' class="main-section__item-comment-button">Comments</button>
+        </div>
       </div>
     `;
     displaySection.appendChild(robotDiv);
@@ -100,11 +120,22 @@ function createRobots(data) {
       displayDetails(item);
     })
   });
+
+  const likeButton = document.querySelectorAll('.main-section__item-name button');
+
+  likeButton.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      likeRobot(e.target.parentElement.id);
+      refreshLikes();
+    });
+  });
 }
 
 function renderRobots() {
+  displaySection.innerHTML = '';
   const robots = getItemsData();
   robots.then((data) => {
+    robotsTotal.innerHTML = data.length;
     createRobots(data);
   });
 }
