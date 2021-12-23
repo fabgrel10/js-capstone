@@ -1,23 +1,127 @@
-/* Core variables */
-@import 'base/vars';
-
 /* CSS Reset */
-@import 'base/reset';
+@import "base/reset";
+
+/* Core variables */
+@import "base/vars";
 
 /* Mixins, helpers and functions */
-@import 'base/mixins';
+@import "base/mixins";
 
-/* Vendor */
+/* Fonts */
+@import "base/fonts";
 
-/* Components */
-
-/* Use the variables */
+/* General */
 body {
-  background-color: $body-background-color;
   color: $text-color;
-  font-size: $h1-font-size;
+  font-family: "Nanum Gothic", sans-serif;
+  height: 100%;
 }
 
-p {
-  font-size: $p-font-size;
+li {
+  list-style: none;
+  padding: 5px;
+}
+
+/* Containers */
+.outer-container {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.inner-container {
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  background-repeat: no-repeat;
+  background-color: $white;
+  margin: 25px auto;
+  padding: 15px;
+  width: 768px;
+  box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+}
+
+/* Header */
+nav {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#nav-logo {
+  clip-path: circle();
+  background-color: #000;
+  width: 80px;
+}
+
+#nav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* Homepage */
+#main-section {
+  margin-top: 50px;
+}
+
+#main-section__display-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 55px;
+  margin-bottom: 50px;
+}
+
+.main-section__item-img {
+  display: flex;
+  justify-content: center;
+}
+
+.main-section__item-name {
+  display: flex;
+  font-size: 1rem;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+.main-section__item-name h2 {
+  padding-left: 12px;
+}
+
+.main-section__item-name button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.main-section__item-likes-count {
+  text-align: right;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.main-section__item-comment-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-section__item-comment-button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.2em 0.5em;
+  box-shadow: 1px 1px 0 0, 2px 2px 0 0, 3px 3px 0 0, 4px 4px 0 0, 5px 5px 0 0;
+  user-select: none;
+  touch-action: manipulation;
 }
