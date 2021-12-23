@@ -1,5 +1,5 @@
-import { getLikes } from './api/api';
-import renderRobots from './helpers/helpers';
+import { getLikes } from './api/api.js';
+import renderRobots from './helpers/helpers.js';
 
 import './scss/app.scss';
 

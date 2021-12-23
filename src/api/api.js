@@ -8,6 +8,28 @@ async function getItemsData() {
   return data;
 }
 
+const postComments = async (itemId, username, comment) => {
+  /* eslint-disable-next-line no-unused-vars */
+  const postResult = await fetch(`${involvementAPIUrl}/${appId}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      item_id: `item${itemId}`,
+      username: username.value,
+      comment: comment.value,
+    }),
+  });
+  username.value = '';
+  comment.value = '';
+};
+
+const getComments = async (param) => {
+  const commentsList = await fetch(`${involvementAPIUrl}/${appId}/comments?item_id=${param}`);
+  return commentsList.json();
+};
+
 async function likeRobot(robotId) {
   const response = await fetch(`${involvementAPIUrl}/${appId}/likes/`, {
     method: 'POST',
@@ -41,4 +63,6 @@ async function getLikes() {
   });
 }
 
-export { getItemsData, getLikes, likeRobot };
+export {
+  getItemsData, getLikes, likeRobot, getComments, postComments,
+};
