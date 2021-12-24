@@ -31,10 +31,10 @@ function displayComments(itemId) {
       response.forEach((comment) => {
         const commentItem = document.createElement('LI');
         commentItem.innerHTML = `
-          <div>
-          ${comment.creation_date} :
-          ${comment.username} -
-          ${comment.comment}
+          <div><b>
+          ${comment.creation_date} - 
+          ${comment.username}</b><br> 
+          <i>${comment.comment}</i>
           </div>
         `;
         commentList.appendChild(commentItem);
@@ -62,7 +62,7 @@ function renderItem(itemId, itemName) {
   </ul>
   <input class="inputName" type="text" placeholder="Your name"></input>
   <textarea class="inputComment" placeholder="Your insights"></textarea>
-  <button class="add-comment-btn">Comment</button>
+  <button class="add-comment-btn">Add Comment</button>
   `;
   itemView.classList.remove('none');
   itemView.classList.add('absolute');
@@ -86,10 +86,10 @@ function renderItem(itemId, itemName) {
 function displayDetails(item) {
   const detailContainer = document.getElementById('details');
   detailContainer.innerHTML = `
-  <p>City: ${item.address.city}</p>
-  <p>Brand: ${item.company.name}</p>
-  <p>Industry: ${item.company.bs}</p>
-  <p>Specialty: ${item.company.catchPhrase}</p>
+  <p><b>City:</b> ${item.address.city}</p>
+  <p><b>Brand:</b> ${item.company.name}</p>
+  <p><b>Industry:</b> ${item.company.bs}</p>
+  <p><b>Specialty:</b> ${item.company.catchPhrase}</p>
   `;
 }
 

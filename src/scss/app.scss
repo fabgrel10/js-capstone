@@ -168,7 +168,9 @@ nav {
   justify-content: center;
 }
 
-.main-section__item-comment-button {
+.main-section__item-comment-button,
+.close-item,
+.add-comment-btn {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
   letter-spacing: 1px;
@@ -187,17 +189,20 @@ nav {
 .absolute {
   position: absolute;
   top: 150px;
-  left: 100px;
+  left: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 #individual-item {
-  padding-top: 30px;
+  padding: 20px;
   width: 500px;
-  height: 700px;
   background-color: $light-gray;
+}
+
+.itemView1 {
+  background-color: rebeccapurple;
 }
 
 .none {
@@ -205,12 +210,41 @@ nav {
   display: none;
 }
 
-.robot-name {
-  margin: 20px;
+.robot-name,
+#comment-counter {
+  margin: 5px;
 }
 
 .close-item {
   align-self: flex-end;
   margin: 0 20px;
   padding-right: 10px;
+}
+
+#details b,
+#comment-list b,
+#comment-counter,
+.robot-name {
+  font-weight: bold;
+}
+
+.inputComment,
+.inputName {
+  width: 200px;
+  margin: 5px 10px;
+}
+
+.inputComment {
+  height: 60px;
+}
+
+li div,
+#details {
+  font-size: 0.8rem;
+}
+
+#comment-list {
+  width: 400px;
+  max-height: 200px;
+  overflow-y: scroll;
 }
