@@ -196,4 +196,6 @@ function renderRobots() {
   });
 }
 
-export { likeApiMock, commentsTest, commentApiMock, createRobots, renderRobots };
+export {
+  likeApiMock, commentsTest, commentApiMock, createRobots, renderRobots,
+};

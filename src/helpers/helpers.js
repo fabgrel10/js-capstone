@@ -88,8 +88,8 @@ function displayDetails(item) {
   detailContainer.innerHTML = `
   <p>City: ${item.address.city}</p>
   <p>Brand: ${item.company.name}</p>
-  <p>Specialty 1: ${item.company.catchPhrase}</p>
-  <p>Specialty 2: ${item.company.bs}</p>
+  <p>Industry: ${item.company.bs}</p>
+  <p>Specialty: ${item.company.catchPhrase}</p>
   `;
 }
 

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
- import { commentApiMock, commentsTest } from '../__mocks__/helpers.js';
+import { commentApiMock, commentsTest } from '../__mocks__/helpers.js';
 
 describe('Add a new comment to API', () => {
   test('Add a new comment', () => {
