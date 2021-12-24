@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-[Live Demo Link](#/)
+[Live Demo Link](https://js-capstone.surge.sh/)
 
 ## Table of Contents
 
@@ -37,7 +37,7 @@ The JavaScript capstone is a webapp that allows you to search for futuristic, cu
 
 ## Presentation
 
-[A brief presentation of the app](https://www.loom.com/share/3e50931611e742c788a80e69e5215abd)
+You can see the presentation [here](https://www.youtube.com/watch?v=-UDiWSw21yY)
 
 ## Built With
 
