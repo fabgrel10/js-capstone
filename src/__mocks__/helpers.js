@@ -2,8 +2,27 @@ import {
   getItemsData, getComments, postComments, getLikes, likeRobot,
 } from '../api/api.js';
 
+const apiMock = [
+  {
+    id: 1,
+    name: 'Bender',
+    likes: 0,
+  },
+  {
+    id: 2,
+    name: 'Fry',
+    likes: 10,
+  },
+  {
+    id: 3,
+    name: 'Leela',
+    likes: 20,
+  },
+
+];
+
 const displaySection = document.getElementById('main-section__display-data');
-const robotsTotal = document.querySelector('#nav-robots-total');
+const robotsTotal = document.querySelector('#nav-title span');
 
 function refreshLikes() {
   const totalLikes = document.getElementsByClassName('main-section__item-likes-count');
@@ -142,4 +161,4 @@ function renderRobots() {
   });
 }
 
-export default renderRobots;
+export { apiMock, createRobots, renderRobots };

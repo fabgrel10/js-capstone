@@ -14,7 +14,7 @@
     "stylelint": "npx stylelint \"**/*.{css,scss}\" --fix",
     "eslint": "npx eslint . --fix",
     "deploy": "gh-pages -d dist",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "keywords": [
     "webpack",
