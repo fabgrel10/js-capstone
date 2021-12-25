@@ -1,11 +1,11 @@
 import {
-  getItemsData, getComments, postComments, getLikes, likeRobot,
+  getItemsData, likeRobot,
 } from '../api/api.js';
 
 const displaySection = document.getElementById('main-section__display-data');
 const robotsTotal = document.querySelector('#nav-robots-total');
 
-function refreshLikes() {
+function refreshLikes(getLikes) {
   const totalLikes = document.getElementsByClassName('main-section__item-likes-count');
   const totalLikesArray = Array.from(totalLikes);
 
@@ -22,9 +22,7 @@ function refreshLikes() {
   });
 }
 
-function displayComments(itemId) {
-  const commentCount = document.getElementById('comment-counter');
-  const commentList = document.getElementById('comment-list');
+function displayComments(itemId, getComments, commentList, commentCount) {
   getComments(`item${itemId}`)
     .then((response) => {
       commentCount.innerHTML = `Comments(${response.length})`;
@@ -45,7 +43,14 @@ function displayComments(itemId) {
     });
 }
 
-function renderItem(itemId, itemName) {
+function addComment (itemId, postComments, getComments, inputName, inputComment, commentList, commentCount) {
+  postComments(itemId, inputName, inputComment).then(() => {
+    commentList.innerHTML = '';
+    displayComments(itemId, getComments, commentList, commentCount);
+  });
+}
+
+function renderItem(itemId, itemName, postComments, getComments) {
   const itemView = document.getElementById('individual-item');
   itemView.innerHTML = `
   <button class="close-item">X</button>
@@ -60,8 +65,8 @@ function renderItem(itemId, itemName) {
   <ul id="comment-list">
 
   </ul>
-  <input class="inputName" type="text" placeholder="Your name"></input>
-  <textarea class="inputComment" placeholder="Your insights"></textarea>
+  <input class="inputName" type="text" placeholder="Your name" pattern=".{1,}"></input>
+  <textarea class="inputComment" placeholder="Your insights" pattern=".{1,}"></textarea>
   <button class="add-comment-btn">Add Comment</button>
   `;
   itemView.classList.remove('none');
@@ -75,16 +80,13 @@ function renderItem(itemId, itemName) {
   addCommentBtn[0].addEventListener('click', () => {
     const inputName = document.getElementsByClassName('inputName');
     const inputComment = document.getElementsByClassName('inputComment');
-    postComments(itemId, inputName[0], inputComment[0]).then(() => {
-      const commentList = document.getElementById('comment-list');
-      commentList.innerHTML = '';
-      displayComments(itemId);
-    });
-  });
+    const commentList = document.getElementById('comment-list');
+    const commentCount = document.getElementById('comment-counter');
+    addComment (itemId, postComments, getComments, inputName[0], inputComment[0], commentList, commentCount)});
 }
 
-function displayDetails(item) {
-  const detailContainer = document.getElementById('details');
+function displayDetails(item, detailContainer) {
+  // const detailContainer = document.getElementById('details');
   detailContainer.innerHTML = `
   <p><b>City:</b> ${item.address.city}</p>
   <p><b>Brand:</b> ${item.company.name}</p>
@@ -93,7 +95,7 @@ function displayDetails(item) {
   `;
 }
 
-function createRobots(data) {
+function createRobots(data, getLikes, postComments, getComments) {
   data.forEach((item) => {
     const robotDiv = document.createElement('div');
     robotDiv.classList.add('main-section__item');
@@ -117,9 +119,10 @@ function createRobots(data) {
     displaySection.appendChild(robotDiv);
     const commentBtn = document.getElementById(`bt${item.id}`);
     commentBtn.addEventListener('click', () => {
-      renderItem(item.id, item.name);
-      displayComments(item.id);
-      displayDetails(item);
+      renderItem(item.id, item.name, postComments, getComments);
+      displayComments(item.id, getComments);
+      const detailContainer = document.getElementById('details');
+      displayDetails(item, detailContainer);
     });
   });
 
@@ -128,18 +131,18 @@ function createRobots(data) {
   likeButton.forEach((button) => {
     button.addEventListener('click', (e) => {
       likeRobot(e.target.parentElement.id);
-      refreshLikes();
+      refreshLikes(getLikes);
     });
   });
 }
 
-function renderRobots() {
+function renderRobots(getLikes, postComments, getComments) {
   displaySection.innerHTML = '';
   const robots = getItemsData();
   robots.then((data) => {
     robotsTotal.innerHTML = data.length;
-    createRobots(data);
+    createRobots(data, getLikes, postComments, getComments);
   });
 }
 
-export default renderRobots;
+export { renderRobots, displayDetails, addComment, displayComments };
