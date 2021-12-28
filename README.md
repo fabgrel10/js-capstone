@@ -19,7 +19,6 @@
 - [Presentation](##presentation)
 - [Built With](##built-with)
 - [Getting Started](##getting-started)
-  - [Prerequisites](#prerequisites)
   - [Setup](##setup)
 - [Build Assets: Development](##build-assets-development)
   - [One time build assets for development](##one-time-build-assets-for-development)
@@ -34,10 +33,6 @@
 ## Description
 
 The JavaScript capstone is a webapp that allows you to search for futuristic, cutting-edge technology robots that satisfy the need of your company. If you had a good user experience with our products, you can like an item. If you have further question, please comment on the robot of your choice.
-
-## Presentation
-
-You can see the presentation [here](https://www.youtube.com/watch?v=-UDiWSw21yY)
 
 ## Built With
 
