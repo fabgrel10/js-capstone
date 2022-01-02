@@ -32,8 +32,8 @@ function displayComments(itemId) {
         const commentItem = document.createElement('LI');
         commentItem.innerHTML = `
           <div><b>
-          ${comment.creation_date} - 
-          ${comment.username}</b><br> 
+          ${comment.creation_date} -
+          ${comment.username}</b><br>
           <i>${comment.comment}</i>
           </div>
         `;
@@ -50,7 +50,7 @@ function renderItem(itemId, itemName) {
   itemView.innerHTML = `
   <button class="close-item">X</button>
   <div>
-    <img src="https://robohash.org/${itemId}?set=set2&size=180x180">
+    <img src="https://robohash.org/${itemId}?set=set1&size=180x180">
   </div>
   <h2 class="robot-name">${itemName}</h2>
   <div id="details">
